@@ -15,7 +15,7 @@ WORKDIR /home/${USERNAME}/app
 ENV RYE_HOME /home/${USERNAME}/.rye
 ENV PATH ${RYE_HOME}/shims:${PATH}
 
-RUN curl -sSf https://rye-up.com/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
+RUN curl -sSf https://rye.astral.sh/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
 
 # For kaniko
 # kaniko does not support RUN --mount
