@@ -13,7 +13,7 @@ USER ${USERNAME}
 WORKDIR /home/${USERNAME}/app
 
 ENV RYE_HOME /home/${USERNAME}/.rye
-ENV PATH ${RYE_HOME}/shims:${PATH}
+ENV PATH ${RYE_HOME}/shims:/home/${USERNAME}/app/.venv/bin:${PATH}
 
 RUN curl -sSf https://rye.astral.sh/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
 
@@ -29,8 +29,6 @@ RUN --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     --mount=type=bind,source=.python-version,target=.python-version \
     --mount=type=bind,source=README.md,target=README.md \
     rye sync --no-dev --no-lock
-
-RUN . .venv/bin/activate
 
 COPY . .
 
